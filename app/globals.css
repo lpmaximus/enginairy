@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss";
+@import "./enginairy-theme.css";
+
+/* Tema claro — padrão. Paleta técnica: tinta quase-preta + ciano de engenharia.
+   O acento sinaliza ação e conformidade; vermelho fica reservado para
+   não-conformidade normativa, nunca para decoração. */
+:root {
+  --bg:       #ffffff;
+  --surface:  #ffffff;
+  --surface2: #f5f7f9;
+  --surface3: #eaeef2;
+  --border:   #e3e8ed;
+  --border2:  #cfd6dd;
+  --text:     #0b1220;
+  --muted:    #5b6672;
+  --muted2:   #8b95a1;
+  --accent:   #0891b2;
+  --accent2:  #0e7490;
+  --primary:  #0b1220;
+  --ok:       #15803d;
+  --warn:     #b45309;
+  --danger:   #b00020;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:       #0b1220;
+    --surface:  #111a2b;
+    --surface2: #162033;
+    --surface3: #1d2940;
+    --border:   #24314a;
+    --border2:  #33425e;
+    --text:     #e8edf4;
+    --muted:    #9aa7b8;
+    --muted2:   #6c7a8d;
+    --accent:   #22d3ee;
+    --accent2:  #67e8f9;
+    --primary:  #e8edf4;
+    --ok:       #4ade80;
+    --warn:     #fbbf24;
+    --danger:   #f87171;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+/* Tabela técnica — a unidade visual do produto. Números alinhados à direita
+   porque a leitura de carga térmica é de comparação de ordem de grandeza. */
+.tabela-tecnica { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tabela-tecnica th,
+.tabela-tecnica td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.tabela-tecnica th { text-align: left; color: var(--muted); font-weight: 600; }
+.tabela-tecnica td.num,
+.tabela-tecnica th.num { text-align: right; font-variant-numeric: tabular-nums; }

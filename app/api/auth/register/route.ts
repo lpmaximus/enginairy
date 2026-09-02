@@ -12,6 +12,7 @@ import { db, users } from "@/src/db";
 import { eq } from "drizzle-orm";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
+import { isAdminEmail } from "@/src/lib/adminEmails";
 
 const Body = z.object({
   email: z.string().email(),
@@ -46,7 +47,9 @@ export async function POST(req: NextRequest) {
       company: company ?? null,
       crea: crea ?? null,
       provider: "credentials",
-      role: "free",
+      // Mesma regra do login por Google: ADMIN_EMAILS decide o cargo já no
+      // cadastro (ver src/lib/adminEmails.ts).
+      role: isAdminEmail(email) ? "admin" : "free",
     })
     .returning({ id: users.id, email: users.email });
 

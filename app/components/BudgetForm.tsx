@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { trackCta, type CtaId } from "@/src/lib/analytics";
 
 /**
  * Reproduz o <script> do enginairylanding.html (linhas 675–745): os botões
@@ -86,11 +87,19 @@ export default function BudgetForm() {
   if (!values.zap.trim()) faltando.push(t("missingWhatsapp"));
   if (!values.desc.trim()) faltando.push(t("missingDesc"));
 
-  function guard(e: React.MouseEvent<HTMLAnchorElement>) {
+  /**
+   * Bloqueia o envio incompleto e, quando o envio acontece, marca o CTA no
+   * GA4. A ordem importa: só conta como conversão o clique que de fato abriu
+   * o WhatsApp/e-mail — clique barrado por campo faltando é abandono, não
+   * lead, e inflar isso estraga a taxa de conversão do painel.
+   */
+  function guard(e: React.MouseEvent<HTMLAnchorElement>, cta: CtaId) {
     if (faltando.length) {
       e.preventDefault();
       setError(`${t("missingPrefix")}: ${faltando.join(", ")}.`);
+      return;
     }
+    trackCta(cta, { servico: tipo });
   }
 
   return (
@@ -180,7 +189,7 @@ export default function BudgetForm() {
           target="_blank"
           rel="noopener noreferrer"
           aria-disabled={faltando.length > 0}
-          onClick={guard}
+          onClick={(e) => guard(e, "orcamento_whatsapp")}
         >
           {t("sendWhatsapp")}
         </a>
@@ -188,7 +197,7 @@ export default function BudgetForm() {
           className="eng-btn eng-btn-ghost"
           href={mailHref}
           aria-disabled={faltando.length > 0}
-          onClick={guard}
+          onClick={(e) => guard(e, "orcamento_email")}
         >
           {t("sendEmail")}
         </a>

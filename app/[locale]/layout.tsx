@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/src/i18n/routing";
 import SiteHeader from "@/app/components/SiteHeader";
 import SiteFooter from "@/app/components/SiteFooter";
+import Analytics from "@/app/components/Analytics";
 
 // ⚠️ NÃO declarar `alternates` aqui — o App Router herda o campo para toda
 // página que não o sobrescreve, e um canonical da home vazaria para o site
@@ -24,6 +25,8 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider>
+      {/* Só no site público: /admin não entra na propriedade GA4. */}
+      <Analytics />
       <SiteHeader />
       <main className="flex-1">{children}</main>
       <SiteFooter />

@@ -8,6 +8,7 @@ import { authConfig } from "./auth.config";
 import { expireTrialIfDue } from "@/src/lib/trials";
 import { track } from "@/src/lib/activity";
 import { isInternalTestEmail } from "@/src/lib/internalTest";
+import { isAdminEmail } from "@/src/lib/adminEmails";
 
 /** Conta impedida de logar: suspensa, banida ou em processo de exclusão. */
 function isLoginBlocked(u: { status?: string | null; deletionScheduledAt?: Date | null }): boolean {
@@ -62,7 +63,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             image: user.image ?? null,
             provider: "google",
             providerId: user.id,
-            role: "free",
+            // ADMIN_EMAILS decide o cargo já no primeiro login — sem isso a
+            // conta nasce 'free' e alguém precisa promovê-la manualmente.
+            role: isAdminEmail(user.email) ? "admin" : "free",
           });
         } else if (isLoginBlocked(existing)) {
           return false;
@@ -81,6 +84,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (dbUser) {
           token.id = String(dbUser.id);
           token.isInternalTester = isInternalTestEmail(dbUser.email);
+
+          // Auto-cura: a conta pode ter sido criada ANTES do e-mail entrar em
+          // ADMIN_EMAILS (cadastro por credenciais, convite, seed). Cada login
+          // reconfere e promove — assim ninguém precisa lembrar de rodar SQL
+          // à mão quando um e-mail novo vira admin.
+          if (isAdminEmail(dbUser.email) && dbUser.role !== "admin") {
+            await db.update(users).set({ role: "admin" }).where(eq(users.id, dbUser.id));
+            dbUser.role = "admin";
+          }
+
           if (user) void track(dbUser.id, "login");
           // Trial vencido rebaixa aqui também, não só no cron: garante que
           // ninguém siga em plano pago se /api/jobs/trials falhar.

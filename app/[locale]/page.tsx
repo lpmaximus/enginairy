@@ -42,10 +42,10 @@ export default async function HomePage({
           <p className="eng-lede">{t("heroLede")}</p>
           <p className="eng-hint">{t("heroLedeNote")}</p>
           <div className="eng-hero-ctas">
-            <a className="eng-btn eng-btn-primary" href="#orcamento">
+            <a className="eng-btn eng-btn-primary" href="#orcamento" data-cta="hero_orcamento">
               {t("cta")}
             </a>
-            <a className="eng-btn eng-btn-ghost" href="#como">
+            <a className="eng-btn eng-btn-ghost" href="#como" data-cta="hero_como_funciona">
               {t("ctaSecondary")}
             </a>
           </div>
@@ -182,7 +182,7 @@ export default async function HomePage({
               <span>ABNT · AISC · ASME · Eurocode</span>
             </div>
             <div className="eng-hero-ctas">
-              <a className="eng-btn eng-btn-on-dark" href="#orcamento">
+              <a className="eng-btn eng-btn-on-dark" href="#orcamento" data-cta="planos_falar">
                 {t("forCompaniesCta")}
               </a>
               {/* Segunda porta para a prova técnica: quem chega por aqui está
@@ -230,7 +230,7 @@ export default async function HomePage({
                 <li>{t("serviceResidentialItem5")}</li>
                 <li>{t("serviceResidentialItem6")}</li>
               </ul>
-              <a className="eng-btn eng-btn-accent" href="#orcamento">{t("cta")}</a>
+              <a className="eng-btn eng-btn-accent" href="#orcamento" data-cta="planos_pro">{t("cta")}</a>
             </div>
             <div className="eng-card">
               <span className="k">{t("cardTagTechnical")}</span>
@@ -244,7 +244,7 @@ export default async function HomePage({
                 <li>{t("serviceTechnicalItem5")}</li>
                 <li>{t("serviceTechnicalItem6")}</li>
               </ul>
-              <a className="eng-btn eng-btn-ghost" href="#orcamento">{t("cta")}</a>
+              <a className="eng-btn eng-btn-ghost" href="#orcamento" data-cta="planos_escritorio">{t("cta")}</a>
             </div>
             <div className="eng-card">
               <span className="k">{t("cardTagProject")}</span>
@@ -258,7 +258,7 @@ export default async function HomePage({
                 <li>{t("serviceIndustrialItem5")}</li>
                 <li>{t("serviceIndustrialItem6")}</li>
               </ul>
-              <a className="eng-btn eng-btn-ghost" href="#orcamento">{t("cta")}</a>
+              <a className="eng-btn eng-btn-ghost" href="#orcamento" data-cta="planos_enterprise">{t("cta")}</a>
             </div>
           </div>
           <p className="eng-cards-note">{t("servicesNote")}</p>
@@ -278,6 +278,7 @@ export default async function HomePage({
               <a
                 className="eng-contact-item"
                 href={`https://wa.me/5531998536281?text=${encodeURIComponent(t("contactWhatsappPrefill"))}`}
+                data-cta="footer_whatsapp"
                 target="_blank"
                 rel="noopener noreferrer"
               >

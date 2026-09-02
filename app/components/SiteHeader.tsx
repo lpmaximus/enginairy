@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { localizePath } from "@/src/i18n/localizePath";
 import type { Locale } from "@/src/i18n/routing";
+import { trackCta } from "@/src/lib/analytics";
 
 /**
  * Cabeçalho fiel a enginairylanding.html: sticky, vidro fosco, logo da marca,
@@ -91,7 +92,11 @@ export default function SiteHeader() {
           </a>
         )}
 
-        <a className="eng-btn eng-btn-primary eng-nav-cta" href={to("orcamento")}>
+        <a
+          className="eng-btn eng-btn-primary eng-nav-cta"
+          href={to("orcamento")}
+          onClick={() => trackCta("header_contato", { origem: "desktop" })}
+        >
           {t("cta")}
         </a>
 
@@ -129,7 +134,10 @@ export default function SiteHeader() {
           <a
             className="eng-btn eng-btn-primary"
             href={to("orcamento")}
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              trackCta("header_contato", { origem: "mobile" });
+              setOpen(false);
+            }}
           >
             {t("cta")}
           </a>

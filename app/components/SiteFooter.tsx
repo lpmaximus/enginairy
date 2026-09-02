@@ -2,6 +2,8 @@
 
 import { usePathname } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
+import { localizePath } from "@/src/i18n/localizePath";
+import type { Locale } from "@/src/i18n/routing";
 
 /** Marca da engrenagem — mesmo desenho do enginairylanding.html.
  *  Usa currentColor para ficar branca sobre o rodapé escuro. */
@@ -30,7 +32,7 @@ function Mark() {
 }
 
 export default function SiteFooter() {
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
   const t = useTranslations("footer");
 
@@ -64,6 +66,7 @@ export default function SiteFooter() {
             </div>
             <div className="eng-foot-col">
               <span className="h">{t("colLearn")}</span>
+              <a href={localizePath("/projetos-realizados", locale)}>{t("linkWork")}</a>
               <a href={to("entrega")}>{t("linkWhatYouGet")}</a>
               <a href={to("como")}>{t("linkHowItWorks")}</a>
               <a href={to("duvidas")}>{t("linkFaq")}</a>

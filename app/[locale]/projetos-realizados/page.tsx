@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { alternatesFor } from "@/src/lib/seo";
 import { localizePath } from "@/src/i18n/localizePath";
 import type { Locale } from "@/src/i18n/routing";
+import ShotLightbox from "@/app/components/ShotLightbox";
 
 /**
  * Prova técnica: os projetos industriais que sustentam a promessa da home.
@@ -164,6 +165,9 @@ export default async function WorkPage({
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={t(`${shot.key}Title`)}
+                      data-shot=""
+                      data-caption={t(`${shot.key}Title`)}
+                      data-body={t(`${shot.key}Body`)}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={`/projetos/${shot.file}`} alt={t(`${shot.key}Title`)} loading="lazy" />
@@ -234,6 +238,9 @@ export default async function WorkPage({
           </div>
         </div>
       </section>
+
+      {/* Ilha cliente: o grid acima continua sendo renderizado no servidor. */}
+      <ShotLightbox />
     </div>
   );
 }

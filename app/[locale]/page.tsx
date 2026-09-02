@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { alternatesFor } from "@/src/lib/seo";
 import type { Locale } from "@/src/i18n/routing";
 import BudgetForm from "@/app/components/BudgetForm";
+import { localizePath } from "@/src/i18n/localizePath";
 
 export async function generateMetadata({
   params,
@@ -183,6 +184,14 @@ export default async function HomePage({
             <div className="eng-hero-ctas">
               <a className="eng-btn eng-btn-on-dark" href="#orcamento">
                 {t("forCompaniesCta")}
+              </a>
+              {/* Segunda porta para a prova técnica: quem chega por aqui está
+                  avaliando se a engenharia existe, não o preço. */}
+              <a
+                className="eng-btn eng-btn-ghost-on-dark"
+                href={localizePath("/projetos-realizados", locale)}
+              >
+                {t("forCompaniesWorkCta")}
               </a>
             </div>
           </div>

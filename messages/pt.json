@@ -149,7 +149,8 @@
     "contactWhatsappPrefill": "Olá! Vim pelo site da Enginairy e gostaria de um orçamento.",
     "contactEmailSubject": "Orçamento Enginairy",
     "faq6Q": "E se o memorial não resolver meu problema?",
-    "faq6A": "Você não paga. O pagamento acontece depois da sua aprovação, não antes. Toda entrega inclui duas rodadas de revisão sem custo — se algo ficou impreciso ou faltando, é corrigido."
+    "faq6A": "Você não paga. O pagamento acontece depois da sua aprovação, não antes. Toda entrega inclui duas rodadas de revisão sem custo — se algo ficou impreciso ou faltando, é corrigido.",
+    "forCompaniesWorkCta": "Ver projetos realizados"
   },
   "pricing": {
     "title": "Planos",
@@ -194,7 +195,9 @@
     "account": "Conta",
     "cta": "Pedir orçamento",
     "brandAlt": "Enginairy — engenharia mecânica online",
-    "navWork": "Projetos"
+    "navWork": "Projetos",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu"
   },
   "footer": {
     "tagline": "Engenharia mecânica online",
@@ -210,7 +213,8 @@
     "colContact": "Contato",
     "linkWhatsapp": "WhatsApp",
     "linkQuote": "Pedir orçamento",
-    "legal": "Responsabilidade técnica registrada no CREA · ART sob demanda"
+    "legal": "Responsabilidade técnica registrada no CREA · ART sob demanda",
+    "linkWork": "Projetos realizados"
   },
   "form": {
     "nameLabel": "Nome",
@@ -313,6 +317,9 @@
     "closingEyebrow": "Seu caso",
     "closingTitle": "O seu problema provavelmente é menor que estes. A conta é a mesma.",
     "closingBody": "O critério que dimensiona a climatização de uma subestação é o mesmo que dimensiona o ar-condicionado do seu quarto: norma aplicável, carga real e equipamento escolhido por número, não por chute. Descreva o que você precisa e eu respondo em até 24h.",
-    "closingCtaSecondary": "Sobre a Enginairy"
+    "closingCtaSecondary": "Sobre a Enginairy",
+    "lightboxClose": "Fechar",
+    "lightboxPrev": "Imagem anterior",
+    "lightboxNext": "Próxima imagem"
   }
 }

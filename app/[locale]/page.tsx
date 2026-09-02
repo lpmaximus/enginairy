@@ -18,15 +18,7 @@ export async function generateMetadata({
   };
 }
 
-const CATEGORIES = [
-  "Ar-condicionado",
-  "Bombas",
-  "Ventilação",
-  "Aquecimento",
-  "Estrutura",
-  "Laudos",
-  "Mecânica",
-];
+const CATEGORY_KEYS = ["cat1", "cat2", "cat3", "cat4", "cat5", "cat6", "cat7"] as const;
 
 export default async function HomePage({
   params,
@@ -42,9 +34,9 @@ export default async function HomePage({
       <div className="eng-hero">
         <div className="eng-wrap eng-hero-inner">
           <h1>
-            Antes de comprar/construir,
+            {t("heroTitleLine1")}
             <br />
-            <span className="hl">pergunte a um engenheiro.</span>
+            <span className="hl">{t("heroTitleHighlight")}</span>
           </h1>
           <p className="eng-lede">{t("heroLede")}</p>
           <p className="eng-hint">{t("heroLedeNote")}</p>
@@ -62,10 +54,10 @@ export default async function HomePage({
       {/* ── Faixa de categorias ──────────────────────────────────────── */}
       <div className="eng-strip">
         <div className="eng-wrap eng-strip-inner">
-          {CATEGORIES.map((cat, i) => (
-            <span key={cat} style={{ display: "contents" }}>
+          {CATEGORY_KEYS.map((key, i) => (
+            <span key={key} style={{ display: "contents" }}>
               {i > 0 && <b>•</b>}
-              <span>{cat}</span>
+              <span>{t(key)}</span>
             </span>
           ))}
         </div>
@@ -75,7 +67,7 @@ export default async function HomePage({
       <section className="eng-section dark" id="entrega">
         <div className="eng-wrap eng-split">
           <div className="eng-sec-head">
-            <p className="eng-eyebrow on-dark">O que você recebe</p>
+            <p className="eng-eyebrow on-dark">{t("eyebrowWhatYouGet")}</p>
             <h2>{t("whatYouGet")}</h2>
             <p className="eng-lede on-dark">{t("whatYouGetSubtitle")}</p>
             <ul className="eng-checks">
@@ -105,22 +97,22 @@ export default async function HomePage({
       <section className="eng-section" id="como">
         <div className="eng-wrap">
           <div className="eng-sec-head">
-            <p className="eng-eyebrow">Como funciona</p>
+            <p className="eng-eyebrow">{t("eyebrowHowItWorks")}</p>
             <h2>{t("howItWorksTitle")}</h2>
           </div>
           <div className="eng-steps">
             <div className="eng-step">
-              <span className="n">1 · Conte o que precisa</span>
+              <span className="n">{t("step1Label")}</span>
               <h3>{t("step1Title")}</h3>
               <p>{t("step1Body")}</p>
             </div>
             <div className="eng-step">
-              <span className="n">2 · O cálculo é feito</span>
+              <span className="n">{t("step2Label")}</span>
               <h3>{t("step2Title")}</h3>
               <p>{t("step2Body")}</p>
             </div>
             <div className="eng-step">
-              <span className="n">3 · Você aprova e paga</span>
+              <span className="n">{t("step3Label")}</span>
               <h3>{t("step3Title")}</h3>
               <p>{t("step3Body")}</p>
             </div>
@@ -135,13 +127,13 @@ export default async function HomePage({
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/luiz-paulo.jpg"
-              alt="Luiz Paulo Cruz, engenheiro mecânico responsável pela Enginairy"
+              alt={t("whoMakesSignature")}
               width={440}
               height={440}
             />
           </div>
           <div className="eng-sec-head">
-            <p className="eng-eyebrow">Quem faz o cálculo</p>
+            <p className="eng-eyebrow">{t("eyebrowWho")}</p>
             <h2>{t("whoMakesTitle")}</h2>
             <p className="eng-lede">{t("whoMakesBody")}</p>
             <p className="eng-sig">{t("whoMakesSignature")}</p>
@@ -154,7 +146,7 @@ export default async function HomePage({
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.58 0 4.24 2.35 4.24 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
               </svg>
-              Ver perfil no LinkedIn
+              {t("whoLinkedin")}
             </a>
             <div className="eng-who-stats">
               <div><span className="v">15+</span><span className="k">{t("whoStatYearsLabel")}</span></div>
@@ -170,7 +162,7 @@ export default async function HomePage({
       <section className="eng-section dark">
         <div className="eng-wrap eng-split">
           <div className="eng-sec-head">
-            <p className="eng-eyebrow on-dark">Para empresas e obras</p>
+            <p className="eng-eyebrow on-dark">{t("eyebrowForCompanies")}</p>
             <h2>{t("forCompaniesTitle")}</h2>
             <p className="eng-lede on-dark">{t("forCompaniesBody")}</p>
             <div className="eng-pills">
@@ -190,7 +182,7 @@ export default async function HomePage({
             </div>
             <div className="eng-hero-ctas">
               <a className="eng-btn eng-btn-on-dark" href="#orcamento">
-                Falar sobre um projeto
+                {t("forCompaniesCta")}
               </a>
             </div>
           </div>
@@ -213,12 +205,12 @@ export default async function HomePage({
       <section className="eng-section" id="servicos">
         <div className="eng-wrap">
           <div className="eng-sec-head">
-            <p className="eng-eyebrow">Serviços</p>
+            <p className="eng-eyebrow">{t("eyebrowServices")}</p>
             <h2>{t("servicesTitle")}</h2>
           </div>
           <div className="eng-cards">
             <div className="eng-card feature">
-              <span className="k">Residencial</span>
+              <span className="k">{t("cardTagResidential")}</span>
               <h3>{t("serviceResidentialTitle")}</h3>
               <p className="desc">{t("serviceResidentialDesc")}</p>
               <ul>
@@ -227,11 +219,12 @@ export default async function HomePage({
                 <li>{t("serviceResidentialItem3")}</li>
                 <li>{t("serviceResidentialItem4")}</li>
                 <li>{t("serviceResidentialItem5")}</li>
+                <li>{t("serviceResidentialItem6")}</li>
               </ul>
               <a className="eng-btn eng-btn-accent" href="#orcamento">{t("cta")}</a>
             </div>
             <div className="eng-card">
-              <span className="k">Técnico</span>
+              <span className="k">{t("cardTagTechnical")}</span>
               <h3>{t("serviceTechnicalTitle")}</h3>
               <p className="desc">{t("serviceTechnicalDesc")}</p>
               <ul>
@@ -245,7 +238,7 @@ export default async function HomePage({
               <a className="eng-btn eng-btn-ghost" href="#orcamento">{t("cta")}</a>
             </div>
             <div className="eng-card">
-              <span className="k">Projeto</span>
+              <span className="k">{t("cardTagProject")}</span>
               <h3>{t("serviceIndustrialTitle")}</h3>
               <p className="desc">{t("serviceIndustrialDesc")}</p>
               <ul>
@@ -268,28 +261,31 @@ export default async function HomePage({
         <div className="eng-wrap eng-form-grid">
           <div>
             <div className="eng-sec-head">
-              <p className="eng-eyebrow">Orçamento</p>
+              <p className="eng-eyebrow">{t("eyebrowBudget")}</p>
               <h2>{t("budgetTitle")}</h2>
               <p className="eng-lede">{t("budgetSubtitle")}</p>
             </div>
             <div className="eng-contact-list">
               <a
                 className="eng-contact-item"
-                href="https://wa.me/5531998536281?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Enginairy%20e%20gostaria%20de%20um%20or%C3%A7amento."
+                href={`https://wa.me/5531998536281?text=${encodeURIComponent(t("contactWhatsappPrefill"))}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span className="ci">WA</span>
                 <span>
-                  <span className="cl">WhatsApp direto</span>
+                  <span className="cl">{t("contactWhatsappLabel")}</span>
                   <br />
                   <span className="cv">+55 31 99853-6281</span>
                 </span>
               </a>
-              <a className="eng-contact-item" href="mailto:contato@l2techs.com?subject=Or%C3%A7amento%20Enginairy">
+              <a
+                className="eng-contact-item"
+                href={`mailto:contato@l2techs.com?subject=${encodeURIComponent(t("contactEmailSubject"))}`}
+              >
                 <span className="ci">@</span>
                 <span>
-                  <span className="cl">E-mail</span>
+                  <span className="cl">{t("contactEmailLabel")}</span>
                   <br />
                   <span className="cv">contato@l2techs.com</span>
                 </span>
@@ -305,7 +301,7 @@ export default async function HomePage({
       <section className="eng-section" id="duvidas">
         <div className="eng-wrap">
           <div className="eng-sec-head">
-            <p className="eng-eyebrow">Dúvidas frequentes</p>
+            <p className="eng-eyebrow">{t("eyebrowFaq")}</p>
             <h2>{t("faqTitle")}</h2>
           </div>
           <div className="eng-faq">
@@ -328,6 +324,10 @@ export default async function HomePage({
             <details>
               <summary>{t("faq5Q")}</summary>
               <p>{t("faq5A")}</p>
+            </details>
+            <details>
+              <summary>{t("faq6Q")}</summary>
+              <p>{t("faq6A")}</p>
             </details>
           </div>
         </div>

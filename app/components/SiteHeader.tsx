@@ -2,7 +2,9 @@
 
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { localizePath } from "@/src/i18n/localizePath";
+import type { Locale } from "@/src/i18n/routing";
 
 /**
  * Cabeçalho fiel a enginairylanding.html: sticky, vidro fosco, logo da marca,
@@ -10,19 +12,23 @@ import { useLocale } from "next-intl";
  *
  * As âncoras vivem na home. Fora dela o href precisa do caminho completo,
  * senão o browser procura a âncora na página atual e não sai do lugar.
+ *
+ * Os rótulos vêm de messages/*.json (namespace `header`): o id da âncora é
+ * técnico e não muda com o idioma, o texto sim.
  */
 const ANCHORS = [
-  { id: "entrega", label: "O que você recebe" },
-  { id: "como", label: "Como funciona" },
-  { id: "quem", label: "Quem faz" },
-  { id: "servicos", label: "Serviços" },
-  { id: "duvidas", label: "Dúvidas" },
-];
+  { id: "entrega", key: "navDelivery" },
+  { id: "como", key: "navHow" },
+  { id: "quem", key: "navWho" },
+  { id: "servicos", key: "navServices" },
+  { id: "duvidas", key: "navFaq" },
+] as const;
 
 export default function SiteHeader() {
   const { data: session } = useSession();
-  const locale = useLocale();
+  const locale = useLocale() as Locale;
   const pathname = usePathname();
+  const t = useTranslations("header");
 
   const home = locale === "pt" ? "/" : `/${locale}`;
   const onHome = pathname === home;
@@ -36,7 +42,7 @@ export default function SiteHeader() {
           <img
             className="eng-brand-img"
             src="/enginairy-logo.png"
-            alt="Enginairy — engenharia mecânica online"
+            alt={t("brandAlt")}
             width={344}
             height={75}
           />
@@ -45,19 +51,19 @@ export default function SiteHeader() {
         <nav className="eng-nav-links">
           {ANCHORS.map((a) => (
             <a key={a.id} href={to(a.id)}>
-              {a.label}
+              {t(a.key)}
             </a>
           ))}
         </nav>
 
         {session && (
-          <a className="eng-account" href={`${home === "/" ? "" : home}/conta`}>
-            Conta
+          <a className="eng-account" href={localizePath("/conta", locale)}>
+            {t("account")}
           </a>
         )}
 
         <a className="eng-btn eng-btn-primary" href={to("orcamento")}>
-          Pedir orçamento
+          {t("cta")}
         </a>
       </div>
     </header>

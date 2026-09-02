@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 /** Marca da engrenagem — mesmo desenho do enginairylanding.html.
  *  Usa currentColor para ficar branca sobre o rodapé escuro. */
@@ -32,6 +32,7 @@ function Mark() {
 export default function SiteFooter() {
   const locale = useLocale();
   const pathname = usePathname();
+  const t = useTranslations("footer");
 
   const home = locale === "pt" ? "/" : `/${locale}`;
   const onHome = pathname === home;
@@ -48,42 +49,39 @@ export default function SiteFooter() {
                 <span className="eng-foot-wm">
                   ENGIN<i>AIRY</i>
                 </span>
-                <span className="eng-foot-tagline">Engenharia mecânica online</span>
+                <span className="eng-foot-tagline">{t("tagline")}</span>
               </span>
             </span>
-            <p>
-              Do dimensionamento residencial ao projeto industrial, com memorial
-              técnico assinado. Um produto L2tech.
-            </p>
+            <p>{t("blurb")}</p>
           </div>
 
           <div className="eng-foot-cols">
             <div className="eng-foot-col">
-              <span className="h">Serviços</span>
-              <a href={to("servicos")}>Residencial</a>
-              <a href={to("servicos")}>Laudos e pareceres</a>
-              <a href={to("servicos")}>Projeto industrial</a>
+              <span className="h">{t("colServices")}</span>
+              <a href={to("servicos")}>{t("linkResidential")}</a>
+              <a href={to("servicos")}>{t("linkReports")}</a>
+              <a href={to("servicos")}>{t("linkIndustrial")}</a>
             </div>
             <div className="eng-foot-col">
-              <span className="h">Saiba mais</span>
-              <a href={to("entrega")}>O que você recebe</a>
-              <a href={to("como")}>Como funciona</a>
-              <a href={to("duvidas")}>Dúvidas frequentes</a>
+              <span className="h">{t("colLearn")}</span>
+              <a href={to("entrega")}>{t("linkWhatYouGet")}</a>
+              <a href={to("como")}>{t("linkHowItWorks")}</a>
+              <a href={to("duvidas")}>{t("linkFaq")}</a>
             </div>
             <div className="eng-foot-col">
-              <span className="h">Contato</span>
+              <span className="h">{t("colContact")}</span>
               <a href="https://wa.me/5531998536281" target="_blank" rel="noopener noreferrer">
-                WhatsApp
+                {t("linkWhatsapp")}
               </a>
               <a href="mailto:contato@l2techs.com">contato@l2techs.com</a>
-              <a href={to("orcamento")}>Pedir orçamento</a>
+              <a href={to("orcamento")}>{t("linkQuote")}</a>
             </div>
           </div>
         </div>
 
         <div className="eng-foot-bot">
           <span>© {new Date().getFullYear()} Enginairy · L2tech</span>
-          <span>Responsabilidade técnica registrada no CREA · ART sob demanda</span>
+          <span>{t("legal")}</span>
         </div>
       </div>
     </footer>

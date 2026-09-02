@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 /**
  * Reproduz o <script> do enginairylanding.html (linhas 675–745): os botões
@@ -8,20 +9,23 @@ import { useState } from "react";
  * href é remontado a cada tecla digitada, embutindo nome/whatsapp/e-mail/
  * serviço/local/descrição na mensagem. Um clique sem nome, WhatsApp ou
  * descrição preenchidos é bloqueado e mostra o que falta.
+ *
+ * Todo texto visível (e a própria mensagem enviada) vem do namespace `form`
+ * em messages/*.json: quem chega pelo /en escreve e envia em inglês.
  */
 
 const WHATS_NUMBER = "5531998536281";
 const MAIL_TO = "contato@l2techs.com";
 
-const SERVICE_OPTIONS = [
-  "Ar-condicionado / climatização",
-  "Bomba (jardim, cisterna, poço)",
-  "Piscina (bomba, filtro, aquecimento)",
-  "Pressurização / hidráulica",
-  "Verificação estrutural / laudo",
-  "Projeto industrial / estrutura metálica",
-  "Outro — explico na descrição",
-];
+const SERVICE_KEYS = [
+  "service1",
+  "service2",
+  "service3",
+  "service4",
+  "service5",
+  "service6",
+  "service7",
+] as const;
 
 type Values = {
   nome: string;
@@ -32,59 +36,60 @@ type Values = {
   desc: string;
 };
 
-const INITIAL: Values = {
-  nome: "",
-  zap: "",
-  email: "",
-  tipo: SERVICE_OPTIONS[0],
-  local: "",
-  desc: "",
-};
-
-function compose(v: Values): string {
-  return [
-    "Olá! Vim pelo site da Enginairy e gostaria de um orçamento.",
-    "",
-    `Nome: ${v.nome.trim() || "—"}`,
-    `WhatsApp: ${v.zap.trim() || "—"}`,
-    `E-mail: ${v.email.trim() || "—"}`,
-    `Serviço: ${v.tipo}`,
-    `Local: ${v.local.trim() || "—"}`,
-    "",
-    "Problema:",
-    v.desc.trim() || "—",
-  ].join("\n");
-}
-
-function missing(v: Values): string[] {
-  const faltando: string[] = [];
-  if (!v.nome.trim()) faltando.push("nome");
-  if (!v.zap.trim()) faltando.push("WhatsApp");
-  if (!v.desc.trim()) faltando.push("descrição do problema");
-  return faltando;
-}
-
 export default function BudgetForm() {
-  const [values, setValues] = useState<Values>(INITIAL);
+  const t = useTranslations("form");
+
+  const services = SERVICE_KEYS.map((k) => t(k));
+
+  const [values, setValues] = useState<Values>({
+    nome: "",
+    zap: "",
+    email: "",
+    tipo: "",
+    local: "",
+    desc: "",
+  });
   const [error, setError] = useState<string | null>(null);
+
+  // `tipo` nasce vazio para o estado inicial não depender das traduções (que
+  // só existem no render). Vazio = primeira opção, igual ao <select>.
+  const tipo = values.tipo || services[0];
 
   function set<K extends keyof Values>(key: K, val: string) {
     setValues((prev) => ({ ...prev, [key]: val }));
     if (error) setError(null);
   }
 
-  const texto = compose(values);
+  const texto = [
+    t("msgIntro"),
+    "",
+    `${t("msgName")}: ${values.nome.trim() || "—"}`,
+    `${t("msgWhatsapp")}: ${values.zap.trim() || "—"}`,
+    `${t("msgEmail")}: ${values.email.trim() || "—"}`,
+    `${t("msgService")}: ${tipo}`,
+    `${t("msgLocation")}: ${values.local.trim() || "—"}`,
+    "",
+    t("msgProblem"),
+    values.desc.trim() || "—",
+  ].join("\n");
+
   const waHref = `https://wa.me/${WHATS_NUMBER}?text=${encodeURIComponent(texto)}`;
   const mailHref =
     `mailto:${MAIL_TO}` +
-    `?subject=${encodeURIComponent("Orçamento Enginairy — " + (values.nome.trim() || "novo pedido"))}` +
+    `?subject=${encodeURIComponent(
+      `${t("mailSubject")} — ${values.nome.trim() || t("mailSubjectFallback")}`,
+    )}` +
     `&body=${encodeURIComponent(texto)}`;
-  const faltando = missing(values);
+
+  const faltando: string[] = [];
+  if (!values.nome.trim()) faltando.push(t("missingName"));
+  if (!values.zap.trim()) faltando.push(t("missingWhatsapp"));
+  if (!values.desc.trim()) faltando.push(t("missingDesc"));
 
   function guard(e: React.MouseEvent<HTMLAnchorElement>) {
     if (faltando.length) {
       e.preventDefault();
-      setError(`Falta preencher: ${faltando.join(", ")}.`);
+      setError(`${t("missingPrefix")}: ${faltando.join(", ")}.`);
     }
   }
 
@@ -92,13 +97,13 @@ export default function BudgetForm() {
     <form className="eng-form" onSubmit={(e) => e.preventDefault()}>
       <div className="eng-field">
         <label htmlFor="f-nome">
-          Nome <span className="req">*</span>
+          {t("nameLabel")} <span className="req">*</span>
         </label>
         <input
           id="f-nome"
           name="nome"
           type="text"
-          placeholder="Como devo te chamar"
+          placeholder={t("namePlaceholder")}
           autoComplete="name"
           required
           value={values.nome}
@@ -108,13 +113,13 @@ export default function BudgetForm() {
       <div className="eng-row2">
         <div className="eng-field">
           <label htmlFor="f-zap">
-            WhatsApp <span className="req">*</span>
+            {t("whatsappLabel")} <span className="req">*</span>
           </label>
           <input
             id="f-zap"
             name="whatsapp"
             type="tel"
-            placeholder="(31) 99999-9999"
+            placeholder={t("whatsappPlaceholder")}
             autoComplete="tel"
             required
             value={values.zap}
@@ -122,12 +127,12 @@ export default function BudgetForm() {
           />
         </div>
         <div className="eng-field">
-          <label htmlFor="f-email">E-mail</label>
+          <label htmlFor="f-email">{t("emailLabel")}</label>
           <input
             id="f-email"
             name="email"
             type="email"
-            placeholder="voce@email.com"
+            placeholder={t("emailPlaceholder")}
             autoComplete="email"
             value={values.email}
             onChange={(e) => set("email", e.target.value)}
@@ -136,20 +141,20 @@ export default function BudgetForm() {
       </div>
       <div className="eng-row2">
         <div className="eng-field">
-          <label htmlFor="f-tipo">Tipo de serviço</label>
-          <select id="f-tipo" name="tipo" value={values.tipo} onChange={(e) => set("tipo", e.target.value)}>
-            {SERVICE_OPTIONS.map((opt) => (
+          <label htmlFor="f-tipo">{t("serviceLabel")}</label>
+          <select id="f-tipo" name="tipo" value={tipo} onChange={(e) => set("tipo", e.target.value)}>
+            {services.map((opt) => (
               <option key={opt}>{opt}</option>
             ))}
           </select>
         </div>
         <div className="eng-field">
-          <label htmlFor="f-local">Cidade / País</label>
+          <label htmlFor="f-local">{t("locationLabel")}</label>
           <input
             id="f-local"
             name="local"
             type="text"
-            placeholder="Belo Horizonte, Brasil"
+            placeholder={t("locationPlaceholder")}
             value={values.local}
             onChange={(e) => set("local", e.target.value)}
           />
@@ -157,12 +162,12 @@ export default function BudgetForm() {
       </div>
       <div className="eng-field">
         <label htmlFor="f-desc">
-          Descreva o problema <span className="req">*</span>
+          {t("descLabel")} <span className="req">*</span>
         </label>
         <textarea
           id="f-desc"
           name="descricao"
-          placeholder="Ex.: quarto de 14 m² no último andar, janela grande virada para o poente. Quero saber qual ar-condicionado comprar e se preciso trocar a fiação."
+          placeholder={t("descPlaceholder")}
           required
           value={values.desc}
           onChange={(e) => set("desc", e.target.value)}
@@ -177,7 +182,7 @@ export default function BudgetForm() {
           aria-disabled={faltando.length > 0}
           onClick={guard}
         >
-          Enviar pelo WhatsApp
+          {t("sendWhatsapp")}
         </a>
         <a
           className="eng-btn eng-btn-ghost"
@@ -185,7 +190,7 @@ export default function BudgetForm() {
           aria-disabled={faltando.length > 0}
           onClick={guard}
         >
-          Enviar por e-mail
+          {t("sendEmail")}
         </a>
       </div>
       {error && (

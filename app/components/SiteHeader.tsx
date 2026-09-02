@@ -54,6 +54,9 @@ export default function SiteHeader() {
               {t(a.key)}
             </a>
           ))}
+          {/* Unico item que nao e ancora da home: pagina propria, entao precisa
+              do slug traduzido (/en/portfolio), nunca de `${home}/...`. */}
+          <a href={localizePath("/projetos-realizados", locale)}>{t("navWork")}</a>
         </nav>
 
         {session && (

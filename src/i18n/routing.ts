@@ -29,6 +29,7 @@ export const pathnames = {
   "/planos": { pt: "/planos", en: "/pricing" },
   "/como-funciona": { pt: "/como-funciona", en: "/how-it-works" },
   "/sobre": { pt: "/sobre", en: "/about" },
+  "/projetos-realizados": { pt: "/projetos-realizados", en: "/portfolio" },
   "/contato": { pt: "/contato", en: "/contact" },
   "/entrar": { pt: "/entrar", en: "/sign-in" },
   "/coming-soon": "/coming-soon",

@@ -150,7 +150,11 @@
     "contactEmailLabel": "Email",
     "contactWhatsappPrefill": "Hi! I came from the Enginairy website and would like a quote.",
     "contactEmailSubject": "Enginairy quote",
-    "forCompaniesWorkCta": "See delivered projects"
+    "forCompaniesWorkCta": "See delivered projects",
+    "tipsEyebrow": "Guide",
+    "tipsTitle": "Air conditioner acting up?",
+    "tipsLede": "A guide to the most common causes of an AC that won't cool, leaks water, or trips the breaker — and when it's a design problem, not maintenance.",
+    "tipsCta": "See quick diagnosis"
   },
   "pricing": {
     "title": "Pricing",
@@ -197,7 +201,8 @@
     "brandAlt": "Enginairy — online mechanical engineering",
     "navWork": "Projects",
     "menuOpen": "Open menu",
-    "menuClose": "Close menu"
+    "menuClose": "Close menu",
+    "navTips": "Tips"
   },
   "footer": {
     "tagline": "Online mechanical engineering",
@@ -214,7 +219,8 @@
     "linkWhatsapp": "WhatsApp",
     "linkQuote": "Request quote",
     "legal": "Technical responsibility registered with CREA · ART issued on demand",
-    "linkWork": "Delivered projects"
+    "linkWork": "Delivered projects",
+    "linkTips": "Maintenance tips"
   },
   "form": {
     "nameLabel": "Name",
@@ -321,5 +327,60 @@
     "lightboxClose": "Close",
     "lightboxPrev": "Previous image",
     "lightboxNext": "Next image"
+  },
+  "acTips": {
+    "metaTitle": "Air Conditioner Not Cooling? Troubleshooting & Maintenance Guide",
+    "metaDescription": "AC not cooling, leaking water, smelling bad, or tripping the breaker? The most common causes, what to check before calling a technician, and the design mistakes behind them.",
+    "eyebrow": "Practical guide",
+    "heroTitle": "Air conditioner acting up? Start here.",
+    "heroLede": "The most common causes of an AC that won't cool, leaks water, smells bad, or trips the breaker — what you can check yourself, and when the problem is a design flaw, not a maintenance issue.",
+    "heroNote": "General guidance. For building or industrial HVAC, the root cause is usually sizing — see the design-error section below.",
+    "diagEyebrow": "Quick diagnosis",
+    "diagTitle": "The 9 most common problems",
+    "faq1Q": "AC is running but not cooling",
+    "faq1A": "The most frequent causes are a dirty filter (it blocks heat exchange), low refrigerant from a leak, a blocked outdoor unit with no room to reject heat, or a room larger than the unit's capacity. Start by cleaning the filter and clearing space around the outdoor unit. If it still won't cool, it's usually a refrigerant leak — that needs a technician with a leak detector, since simply topping up refrigerant without finding and sealing the leak means it comes back within months.",
+    "faq2Q": "AC won't turn on at all",
+    "faq2A": "Check the breaker and outlet first — it's the most common cause and the cheapest to fix. Then check the remote's batteries and whether the unit's display shows a blinking error code. If the breaker trips every time you turn it on, stop trying — it can be a short in the board or compressor, and repeated attempts risk damaging the unit.",
+    "faq3Q": "AC leaking water inside",
+    "faq3A": "Almost always a clogged condensate drain, or one installed without the minimum slope — water that should drain out backs up and overflows the indoor unit. A dirty filter causes this indirectly too: the coil freezes, thaws at the wrong time, and the drain pan can't keep up. If the leak is at the outdoor unit, or persists with a clean drain, the refrigerant line insulation may be compromised.",
+    "faq4Q": "AC smells musty or like something's burning",
+    "faq4A": "A musty smell is biofilm — mold and bacteria — built up on the coil and drain pan, common when only the filter gets cleaned and the unit is never fully sanitized. A burning smell is more serious: it can be wiring, a capacitor, or the control board overheating. Shut it off at the breaker and call a technician — this isn't one to wait on.",
+    "faq5Q": "AC trips the breaker when I turn it on",
+    "faq5A": "Usually circuit overload — a breaker undersized for the compressor's startup current — a missing dedicated circuit, or an internal short in the unit. An air conditioner needs its own circuit sized for startup current, not an outlet shared with other appliances. If the circuit is already correctly sized and it still trips, the fault is in the unit, not the wiring.",
+    "faq6Q": "AC is noisy, vibrating, or clicking",
+    "faq6A": "Vibration is usually a loose outdoor-unit mount without rubber isolation pads, or a mounting surface that isn't rigid enough. Clicking on startup or shutdown is normal thermal expansion of the plastic housing. A continuous high-pitched whistle usually points to a refrigerant leak at a valve; a loud, low compressor noise can mean lost lubrication or end of service life.",
+    "faq7Q": "High electric bill from the AC",
+    "faq7A": "A dirty filter forces the compressor to run longer for the same result — the easiest cause to rule out. Next, check whether the capacity (BTU) actually matches the room's area and sun exposure: an undersized unit never shuts off, and an oversized one short-cycles without stabilizing — both waste energy. An efficiency rating or inverter compressor helps, but doesn't make up for wrong sizing.",
+    "faq8Q": "AC remote control not working",
+    "faq8A": "Before assuming it's broken, replace the batteries and check for anything blocking the line of sight to the unit's receiver — strong light hitting the receiver directly can interfere too. If another remote works fine and only this one fails, the unit's infrared receiver itself may be faulty.",
+    "faq9Q": "Ice building up on the indoor unit",
+    "faq9A": "Almost always low refrigerant from a leak, or restricted airflow — a dirty filter, a dirty coil, or a failing blower fan. Never run a frozen unit on cooling mode hoping it clears itself: turn it off, let it thaw naturally, clean the filter, and if it freezes again, get the refrigerant checked — running it frozen wears out the compressor.",
+    "maintEyebrow": "Preventive maintenance",
+    "maintTitle": "What prevents most of these problems",
+    "maintLede": "Five simple habits cover most emergency AC calls.",
+    "check1": "Clean the filter every 15–30 days of use — it prevents the most problems, and it's the one thing you can do yourself.",
+    "check2": "Full coil and drain-pan cleaning once a year, even if the filter is cleaned regularly.",
+    "check3": "Check the condensate drain and line slope during annual service — the most common cause of leaks.",
+    "check4": "Have the refrigerant level checked every 1–2 years, or when cooling drops off — refrigerant doesn't run out on its own; a drop means a leak.",
+    "check5": "Keep at least 15 cm (6 in) clear around the outdoor unit so it can reject heat properly.",
+    "designEyebrow": "For engineers and designers",
+    "designTitle": "When the problem started in the design, not the maintenance",
+    "designLede": "Half of weak-AC or high-bill complaints aren't equipment failures — they're a miscalculated load, duct, or equipment selection. No maintenance schedule fixes a sizing error.",
+    "card1K": "Thermal load",
+    "card1Title": "Load estimated by rule of thumb, not by code",
+    "card1Desc": "A BTU-per-square-foot rule ignores ceiling height, solar orientation, real occupancy, and internal equipment loads — the result comes out over- or undersized, and no maintenance fixes a calculation error. Enginairy's engine applies the selected standard equation by equation, with a documented calculation record.",
+    "card2K": "Ductwork",
+    "card2Title": "Undersized ducts or excessive pressure loss",
+    "card2Desc": "A duct that's too narrow raises air velocity, diffuser noise, and pressure loss — the fan works harder to deliver less air to the room farthest from the system. The symptom at the end of the line looks like an equipment problem, but it starts in the duct layout.",
+    "card3K": "Fresh air",
+    "card3Title": "Outdoor air rate below code minimum",
+    "card3Desc": "A room without minimum outdoor-air ventilation builds up CO2 and humidity even at the right temperature — and it won't show on the thermostat. It's a code requirement, not a comfort tweak, and informal residential designs often skip this check entirely.",
+    "designCtaNote": "Enginairy's calculation record documents every one of these checks before the project leaves the drawing board.",
+    "designCta": "Request a project quote",
+    "finalEyebrow": "Need more than a tip?",
+    "finalTitle": "Talk to someone who calculates, not just cleans filters",
+    "finalLede": "Residential design, technical reports, or industrial HVAC — with a signed calculation record.",
+    "ctaPrimary": "Request a quote",
+    "ctaSecondary": "See plans"
   }
 }

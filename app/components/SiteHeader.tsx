@@ -42,6 +42,7 @@ export default function SiteHeader() {
   const onHome = pathname === home;
   const to = (id: string) => (onHome ? `#${id}` : `${home}#${id}`);
   const workHref = localizePath("/projetos-realizados", locale);
+  const tipsHref = localizePath("/dicas-ar-condicionado", locale);
 
   // Trocar de rota tem que fechar a gaveta: o Next preserva o componente entre
   // navegações e ela ficaria aberta por cima da página nova.
@@ -84,6 +85,7 @@ export default function SiteHeader() {
           {/* Único item que não é âncora da home: página própria, então precisa
               do slug traduzido (/en/portfolio), nunca de `${home}/...`. */}
           <a href={workHref}>{t("navWork")}</a>
+          <a href={tipsHref}>{t("navTips")}</a>
         </nav>
 
         {session && (
@@ -125,6 +127,9 @@ export default function SiteHeader() {
           ))}
           <a href={workHref} onClick={() => setOpen(false)}>
             {t("navWork")}
+          </a>
+          <a href={tipsHref} onClick={() => setOpen(false)}>
+            {t("navTips")}
           </a>
           {session && (
             <a href={localizePath("/conta", locale)} onClick={() => setOpen(false)}>

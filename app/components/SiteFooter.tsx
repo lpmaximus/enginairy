@@ -67,6 +67,7 @@ export default function SiteFooter() {
             <div className="eng-foot-col">
               <span className="h">{t("colLearn")}</span>
               <a href={localizePath("/projetos-realizados", locale)}>{t("linkWork")}</a>
+              <a href={localizePath("/dicas-ar-condicionado", locale)}>{t("linkTips")}</a>
               <a href={to("entrega")}>{t("linkWhatYouGet")}</a>
               <a href={to("como")}>{t("linkHowItWorks")}</a>
               <a href={to("duvidas")}>{t("linkFaq")}</a>

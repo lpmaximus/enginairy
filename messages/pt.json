@@ -150,7 +150,11 @@
     "contactEmailSubject": "Orçamento Enginairy",
     "faq6Q": "E se o memorial não resolver meu problema?",
     "faq6A": "Você não paga. O pagamento acontece depois da sua aprovação, não antes. Toda entrega inclui duas rodadas de revisão sem custo — se algo ficou impreciso ou faltando, é corrigido.",
-    "forCompaniesWorkCta": "Ver projetos realizados"
+    "forCompaniesWorkCta": "Ver projetos realizados",
+    "tipsEyebrow": "Guia",
+    "tipsTitle": "Ar-condicionado com problema?",
+    "tipsLede": "Guia com as causas mais comuns de ar condicionado que não gela, pinga água ou desarma o disjuntor — e quando o problema é de projeto, não de manutenção.",
+    "tipsCta": "Ver diagnóstico rápido"
   },
   "pricing": {
     "title": "Planos",
@@ -197,7 +201,8 @@
     "brandAlt": "Enginairy — engenharia mecânica online",
     "navWork": "Projetos",
     "menuOpen": "Abrir menu",
-    "menuClose": "Fechar menu"
+    "menuClose": "Fechar menu",
+    "navTips": "Dicas"
   },
   "footer": {
     "tagline": "Engenharia mecânica online",
@@ -214,7 +219,8 @@
     "linkWhatsapp": "WhatsApp",
     "linkQuote": "Pedir orçamento",
     "legal": "Responsabilidade técnica registrada no CREA · ART sob demanda",
-    "linkWork": "Projetos realizados"
+    "linkWork": "Projetos realizados",
+    "linkTips": "Dicas de manutenção"
   },
   "form": {
     "nameLabel": "Nome",
@@ -321,5 +327,60 @@
     "lightboxClose": "Fechar",
     "lightboxPrev": "Imagem anterior",
     "lightboxNext": "Próxima imagem"
+  },
+  "acTips": {
+    "metaTitle": "Ar Condicionado com Problema? Guia de Diagnóstico e Manutenção",
+    "metaDescription": "Ar condicionado não gela, pinga água, dá cheiro ou desarma o disjuntor? Veja as causas mais comuns, o que verificar antes de chamar o técnico e os erros de projeto que causam esses problemas.",
+    "eyebrow": "Guia prático",
+    "heroTitle": "Ar-condicionado com problema? Comece por aqui.",
+    "heroLede": "As causas mais comuns de ar condicionado que não gela, pinga água, dá cheiro ou desarma o disjuntor — o que você mesmo pode verificar e quando o problema é de projeto, não de manutenção.",
+    "heroNote": "Conteúdo de orientação geral. Para climatização predial ou industrial, o problema costuma estar no dimensionamento — veja a seção para quem projeta, mais abaixo.",
+    "diagEyebrow": "Diagnóstico rápido",
+    "diagTitle": "Os 9 problemas mais comuns",
+    "faq1Q": "Ar condicionado liga mas não gela",
+    "faq1A": "As causas mais frequentes são filtro sujo (reduz a troca de calor), pouco gás refrigerante por vazamento, unidade condensadora sem espaço para trocar calor (obstruída ou muito próxima da parede) ou ambiente maior do que a capacidade do equipamento. Comece limpando o filtro e liberando o entorno da condensadora; se continuar sem gelar, o problema costuma ser vazamento de gás, que exige técnico com detector — não dá para completar o gás sem achar e vedar o vazamento antes, ou ele volta em poucos meses.",
+    "faq2Q": "Ar condicionado não liga de jeito nenhum",
+    "faq2A": "Verifique o disjuntor e a tomada antes de qualquer coisa — é a causa mais comum e a mais barata de resolver. Depois, confira as pilhas do controle e se o display da unidade mostra algum código de erro piscando. Se o disjuntor desarma toda vez que você liga, não insista: pode ser curto-circuito na placa ou no compressor, e ligar de novo repetidamente arrisca danificar o equipamento.",
+    "faq3Q": "Ar condicionado pingando água dentro de casa",
+    "faq3A": "Quase sempre é dreno de condensado entupido ou instalado sem a inclinação mínima — a água que deveria escorrer para fora acumula e transborda pela unidade evaporadora. Filtro sujo também causa isso indiretamente: a serpentina congela, descongela fora de hora e a bandeja não dá conta. Se o vazamento for na unidade externa ou persistir mesmo com o dreno limpo, o isolamento térmico da tubulação pode estar comprometido.",
+    "faq4Q": "Ar condicionado com cheiro de mofo ou cheiro de queimado",
+    "faq4A": "Cheiro de mofo é biofilme (fungo e bactéria) acumulado na serpentina e na bandeja de dreno — comum em quem nunca fez higienização, não só limpeza de filtro. Cheiro de queimado é mais sério: pode ser fiação, capacitor ou placa eletrônica superaquecendo. Desligue no disjuntor e chame um técnico — não é caso de esperar.",
+    "faq5Q": "Disjuntor desarma quando ligo o ar condicionado",
+    "faq5A": "Normalmente é sobrecarga no circuito (disjuntor subdimensionado para a corrente de partida do compressor), fiação ou tomada dedicada ausente, ou curto-circuito interno no equipamento. Ar condicionado precisa de circuito próprio, dimensionado para a corrente de partida — não de tomada compartilhada com outros aparelhos. Se o circuito já está correto e ainda desarma, o problema é o equipamento, não a instalação elétrica.",
+    "faq6Q": "Ar condicionado fazendo barulho, vibrando ou com estalos",
+    "faq6A": "Vibração costuma ser suporte da condensadora frouxo, sem os coxins de borracha, ou instalado sobre superfície sem rigidez suficiente. Estalos ao ligar ou desligar são a expansão térmica normal da carcaça plástica. Ruído agudo e contínuo, tipo assobio, costuma indicar vazamento de gás pela válvula; ruído grave e forte no compressor pode indicar falta de lubrificação ou fim de vida útil.",
+    "faq7Q": "Conta de luz alta com ar condicionado",
+    "faq7A": "Filtro sujo obriga o compressor a trabalhar mais tempo para o mesmo resultado — é a causa mais fácil de eliminar. Depois, confira se a capacidade em BTUs bate com a área e a exposição solar do ambiente: equipamento subdimensionado nunca desliga, e superdimensionado ciclou demais sem tempo de estabilizar — as duas situações gastam mais do que deveriam. Selo de eficiência e inversor ajudam, mas não compensam dimensionamento errado.",
+    "faq8Q": "Controle remoto do ar condicionado não funciona",
+    "faq8A": "Antes de suspeitar de defeito, troque as pilhas e verifique se não há obstrução entre o controle e o receptor na unidade — luz forte incidindo direto no receptor também atrapalha. Se outro controle responde e o problema é só nesse, o receptor infravermelho da unidade pode estar com defeito.",
+    "faq9Q": "Gelo ou congelamento na unidade evaporadora",
+    "faq9A": "É quase sempre baixo nível de gás refrigerante por vazamento ou fluxo de ar insuficiente — filtro sujo, serpentina suja ou ventilador interno com defeito. Nunca ligue o equipamento gelado direto no modo frio esperando resolver: desligue, deixe descongelar naturalmente, limpe o filtro e, se voltar a gelar, chame um técnico para checar o gás — continuar usando gelado desgasta o compressor.",
+    "maintEyebrow": "Manutenção preventiva",
+    "maintTitle": "O que evita a maioria desses problemas",
+    "maintLede": "Cinco hábitos simples cobrem a maior parte das chamadas de emergência de ar condicionado.",
+    "check1": "Limpar o filtro a cada 15–30 dias de uso — é a manutenção que mais evita problema e a única que você mesmo faz.",
+    "check2": "Higienização completa da serpentina e da bandeja de dreno uma vez por ano, mesmo limpando o filtro em dia.",
+    "check3": "Verificar o dreno de condensado e a inclinação da tubulação na manutenção anual — é a causa mais comum de vazamento.",
+    "check4": "Checar o nível de gás a cada 1–2 anos ou ao notar queda no gelo — gás não acaba sozinho, queda de nível é sinal de vazamento.",
+    "check5": "Manter pelo menos 15 cm livres ao redor da unidade condensadora para a troca de calor acontecer.",
+    "designEyebrow": "Para engenheiros e projetistas",
+    "designTitle": "Quando o problema nasceu no projeto, não na manutenção",
+    "designLede": "Metade das reclamações de ar-condicionado fraco ou gastando demais não é defeito de equipamento — é carga térmica, duto ou seleção mal calculados. Manutenção não corrige erro de dimensionamento.",
+    "card1K": "Carga térmica",
+    "card1Title": "Carga térmica calculada por estimativa, não por norma",
+    "card1Desc": "Regra de bolso de BTU por metro quadrado ignora pé-direito, orientação solar, ocupação real e carga interna de equipamentos — o resultado sai super ou subdimensionado, e nenhuma manutenção corrige um erro de cálculo. O motor de cálculo do Enginairy aplica a norma selecionada equação por equação, com a memória de cálculo documentada.",
+    "card2K": "Dutos e insuflamento",
+    "card2Title": "Dutos subdimensionados ou com perda de carga alta",
+    "card2Desc": "Duto estreito demais aumenta a velocidade do ar, o ruído nos difusores e a perda de carga — o ventilador trabalha mais para entregar menos ar no ambiente mais distante do sistema. O sintoma no fim da linha parece problema de equipamento, mas nasce no traçado da rede.",
+    "card3K": "Renovação de ar",
+    "card3Title": "Vazão de ar externo abaixo do exigido pela NBR 16401-3",
+    "card3Desc": "Ambiente sem renovação mínima de ar externo acumula CO2 e umidade mesmo com a temperatura certa — e isso não aparece no termostato. É um requisito de norma, não um ajuste de conforto, e projetos residenciais informais costumam pular essa verificação.",
+    "designCtaNote": "O memorial de cálculo do Enginairy documenta cada uma dessas verificações antes de o projeto sair do papel.",
+    "designCta": "Pedir orçamento de projeto",
+    "finalEyebrow": "Precisa de mais que uma dica?",
+    "finalTitle": "Fale com quem calcula, não só limpa filtro",
+    "finalLede": "Projeto residencial, laudo técnico ou climatização industrial — com memorial de cálculo assinado.",
+    "ctaPrimary": "Pedir orçamento",
+    "ctaSecondary": "Ver planos"
   }
 }

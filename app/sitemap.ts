@@ -16,6 +16,7 @@ const STATIC_ROUTES: {
   { href: "/planos",        priority: 0.9, changeFrequency: "monthly" },
   { href: "/como-funciona", priority: 0.8, changeFrequency: "monthly" },
   { href: "/projetos-realizados", priority: 0.8, changeFrequency: "monthly" },
+  { href: "/dicas-ar-condicionado", priority: 0.7, changeFrequency: "monthly" },
   { href: "/sobre",         priority: 0.4, changeFrequency: "yearly" },
   { href: "/contato",       priority: 0.4, changeFrequency: "yearly" },
   { href: "/termos",        priority: 0.2, changeFrequency: "yearly" },

@@ -265,6 +265,24 @@ export default async function HomePage({
         </div>
       </section>
 
+      {/* ── Chamada: dicas de ar-condicionado ───────────────────────── */}
+      <section className="eng-section paper2">
+        <div className="eng-wrap" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, flexWrap: "wrap" }}>
+          <div className="eng-sec-head" style={{ gap: 8 }}>
+            <p className="eng-eyebrow">{t("tipsEyebrow")}</p>
+            <h2 style={{ fontSize: 24 }}>{t("tipsTitle")}</h2>
+            <p className="eng-lede" style={{ fontSize: 15.5 }}>{t("tipsLede")}</p>
+          </div>
+          <a
+            className="eng-btn eng-btn-ghost"
+            href={localizePath("/dicas-ar-condicionado", locale)}
+            data-cta="home_dicas_ar_condicionado"
+          >
+            {t("tipsCta")}
+          </a>
+        </div>
+      </section>
+
       {/* ── Orçamento ────────────────────────────────────────────────── */}
       <section className="eng-section eng-form-sec" id="orcamento">
         <div className="eng-wrap eng-form-grid">

@@ -22,9 +22,22 @@ interface Lead {
   createdAt: string;
 }
 
+interface OrcamentoLead {
+  id: number;
+  name: string;
+  whatsapp: string;
+  email: string | null;
+  service: string | null;
+  location: string | null;
+  message: string;
+  channel: "whatsapp" | "email";
+  createdAt: string;
+}
+
 interface Payload {
   enviadas: Enviada[];
   leads: Lead[];
+  orcamentos: OrcamentoLead[];
   totalLeads: number;
   naoLidas: number;
   alcanceMaximo: number;
@@ -97,10 +110,11 @@ export default function MensagensPage() {
 
       {error && <ErrorBox message={error} />}
 
-      <div className="grid gap-3 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-4">
         <Stat label="Alcance máximo" value={num(data.alcanceMaximo)} hint="contas ativas" />
         <Stat label="Avisos não lidos" value={num(data.naoLidas)} tone="warn" />
         <Stat label="Leads na lista" value={num(data.totalLeads)} tone="ok" />
+        <Stat label="Pedidos de orçamento" value={num(data.orcamentos.length)} tone="ok" />
       </div>
 
       <Card title="✉️ Novo aviso" hint="Título curto; o corpo é opcional e aceita duas ou três linhas">
@@ -229,6 +243,58 @@ export default function MensagensPage() {
         ) : (
           <p className="py-4 text-sm" style={{ color: "var(--muted2)" }}>
             Nenhum aviso enviado ainda.
+          </p>
+        )}
+      </Card>
+
+      <Card
+        title="🧾 Pedidos de orçamento"
+        hint="Capturado no clique do CTA da home, antes do redirect — sobrevive mesmo quando o WhatsApp/e-mail não chega a sair do outro lado"
+      >
+        {data.orcamentos.length ? (
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[720px] text-sm">
+              <thead>
+                <tr
+                  className="text-left text-[11px] uppercase tracking-wider"
+                  style={{ color: "var(--muted2)" }}
+                >
+                  <th className="pb-2">Contato</th>
+                  <th className="pb-2">Serviço</th>
+                  <th className="pb-2">Local</th>
+                  <th className="pb-2">Canal</th>
+                  <th className="pb-2 text-right">Entrou</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.orcamentos.map((o) => (
+                  <tr key={o.id} className="border-t align-top" style={{ borderColor: "var(--border)" }}>
+                    <td className="py-2">
+                      <div className="font-semibold">{o.name}</div>
+                      <div className="text-xs" style={{ color: "var(--muted2)" }}>
+                        {o.whatsapp}
+                        {o.email ? ` · ${o.email}` : ""}
+                      </div>
+                      <div className="mt-1 max-w-[320px] whitespace-pre-wrap text-xs" style={{ color: "var(--muted2)" }}>
+                        {o.message.length > 160 ? `${o.message.slice(0, 160)}…` : o.message}
+                      </div>
+                    </td>
+                    <td className="py-2">{o.service ?? "—"}</td>
+                    <td className="py-2">{o.location ?? "—"}</td>
+                    <td className="py-2">
+                      <Badge>{o.channel === "whatsapp" ? "WhatsApp" : "E-mail"}</Badge>
+                    </td>
+                    <td className="py-2 text-right text-xs" style={{ color: "var(--muted2)" }}>
+                      {shortDate(o.createdAt)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="py-4 text-sm" style={{ color: "var(--muted2)" }}>
+            Nenhum pedido de orçamento ainda.
           </p>
         )}
       </Card>

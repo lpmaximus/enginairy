@@ -10,7 +10,7 @@
  * gravar "/projects" aqui quebraria o assinante em pt (ver src/lib/notifications).
  */
 import { NextRequest, NextResponse } from "next/server";
-import { db, notifications, users, waitlist } from "@/src/db";
+import { db, budgetLeads, notifications, users, waitlist } from "@/src/db";
 import { desc, eq, sql } from "drizzle-orm";
 import { isAdminRequest } from "@/src/lib/adminAuth";
 import { z } from "zod";
@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
 
   const count = sql<number>`count(*)::int`;
 
-  const [enviadas, leads, [totalLeads], [naoLidas], [alcance]] = await Promise.all([
+  const [enviadas, leads, orcamentos, [totalLeads], [naoLidas], [alcance]] = await Promise.all([
     // Agrupado por título+data para o broadcast aparecer como UM envio, e não
     // como 400 linhas iguais.
     db
@@ -53,6 +53,24 @@ export async function GET(req: NextRequest) {
       .orderBy(desc(waitlist.createdAt))
       .limit(100),
 
+    // Pedidos de orçamento da home (BudgetForm) — gravados no clique do CTA,
+    // antes do redirect para WhatsApp/e-mail. Ver app/api/leads/route.ts.
+    db
+      .select({
+        id: budgetLeads.id,
+        name: budgetLeads.name,
+        whatsapp: budgetLeads.whatsapp,
+        email: budgetLeads.email,
+        service: budgetLeads.service,
+        location: budgetLeads.location,
+        message: budgetLeads.message,
+        channel: budgetLeads.channel,
+        createdAt: budgetLeads.createdAt,
+      })
+      .from(budgetLeads)
+      .orderBy(desc(budgetLeads.createdAt))
+      .limit(100),
+
     db.select({ n: count }).from(waitlist),
     db.select({ n: count }).from(notifications).where(sql`${notifications.readAt} is null`),
     db.select({ n: count }).from(users).where(eq(users.status, "active")),
@@ -61,6 +79,7 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     enviadas,
     leads,
+    orcamentos,
     totalLeads: totalLeads?.n ?? 0,
     naoLidas: naoLidas?.n ?? 0,
     alcanceMaximo: alcance?.n ?? 0,

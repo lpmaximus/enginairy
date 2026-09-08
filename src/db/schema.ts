@@ -383,6 +383,34 @@ export const auditLog = pgTable(
   }),
 );
 
+/**
+ * Lead do formulário de orçamento da home (`app/components/BudgetForm.tsx`).
+ * Gravado no clique de "Enviar pelo WhatsApp"/"Enviar por e-mail", ANTES do
+ * redirect para wa.me/mailto — o clique já conta conversão no GA4, mas não
+ * garante que a mensagem chegou do outro lado (WhatsApp Web deslogado, sem
+ * cliente de e-mail padrão no aparelho). Esse registro é o que sobra quando
+ * isso acontece.
+ */
+export const budgetLeads = pgTable(
+  "budget_leads",
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 160 }).notNull(),
+    whatsapp: varchar("whatsapp", { length: 32 }).notNull(),
+    email: varchar("email", { length: 255 }),
+    service: varchar("service", { length: 160 }),
+    location: varchar("location", { length: 160 }),
+    message: text("message").notNull(),
+    // whatsapp | email — qual dos dois botões o visitante clicou
+    channel: varchar("channel", { length: 16 }).notNull(),
+    locale: varchar("locale", { length: 8 }),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+  },
+  (t) => ({
+    createdAtIdx: index("budget_leads_created_at_idx").on(t.createdAt),
+  }),
+);
+
 export const waitlist = pgTable("waitlist", {
   id: serial("id").primaryKey(),
   email: varchar("email", { length: 255 }).notNull().unique(),

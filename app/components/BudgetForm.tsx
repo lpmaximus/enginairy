@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { trackCta, type CtaId } from "@/src/lib/analytics";
 
 /**
@@ -39,6 +39,7 @@ type Values = {
 
 export default function BudgetForm() {
   const t = useTranslations("form");
+  const locale = useLocale();
 
   const services = SERVICE_KEYS.map((k) => t(k));
 
@@ -88,10 +89,40 @@ export default function BudgetForm() {
   if (!values.desc.trim()) faltando.push(t("missingDesc"));
 
   /**
+   * Grava o pedido de orçamento no banco ANTES do redirect para o
+   * WhatsApp/e-mail. Necessário porque o clique no CTA não garante que a
+   * mensagem chegou do outro lado (WhatsApp Web deslogado, sem cliente de
+   * e-mail padrão) — sem isso o lead se perde e some sem deixar rastro além
+   * do clique no GA4. Fire-and-forget: erro de rede aqui não pode travar o
+   * envio real pelo WhatsApp/e-mail.
+   */
+  function sendLead(channel: "whatsapp" | "email") {
+    try {
+      fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: values.nome.trim(),
+          whatsapp: values.zap.trim(),
+          email: values.email.trim() || undefined,
+          service: tipo,
+          location: values.local.trim() || undefined,
+          message: texto,
+          channel,
+          locale,
+        }),
+        keepalive: true,
+      }).catch(() => {});
+    } catch {
+      // gravar o lead nunca pode impedir o envio pelo WhatsApp/e-mail
+    }
+  }
+
+  /**
    * Bloqueia o envio incompleto e, quando o envio acontece, marca o CTA no
-   * GA4. A ordem importa: só conta como conversão o clique que de fato abriu
-   * o WhatsApp/e-mail — clique barrado por campo faltando é abandono, não
-   * lead, e inflar isso estraga a taxa de conversão do painel.
+   * GA4 e grava o lead. A ordem importa: só conta como conversão o clique que
+   * de fato abriu o WhatsApp/e-mail — clique barrado por campo faltando é
+   * abandono, não lead, e inflar isso estraga a taxa de conversão do painel.
    */
   function guard(e: React.MouseEvent<HTMLAnchorElement>, cta: CtaId) {
     if (faltando.length) {
@@ -100,6 +131,7 @@ export default function BudgetForm() {
       return;
     }
     trackCta(cta, { servico: tipo });
+    sendLead(cta === "orcamento_whatsapp" ? "whatsapp" : "email");
   }
 
   return (
